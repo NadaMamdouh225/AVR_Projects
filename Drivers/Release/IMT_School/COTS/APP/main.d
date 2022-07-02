@@ -1,0 +1,10 @@
+IMT_School/COTS/APP/main.o IMT_School/COTS/APP/main.o:  \
+ ../IMT_School/COTS/APP/main.c ../IMT_School/COTS/APP/../LIB/STD_Types.h \
+  ../IMT_School/COTS/APP/../MCAL/DIO/DIO_int.h \
+  ../IMT_School/COTS/APP/../HAL/SSD/SSD_int.h
+
+../IMT_School/COTS/APP/../LIB/STD_Types.h:
+
+../IMT_School/COTS/APP/../MCAL/DIO/DIO_int.h:
+
+../IMT_School/COTS/APP/../HAL/SSD/SSD_int.h:
