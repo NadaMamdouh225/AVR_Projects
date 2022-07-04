@@ -3,9 +3,9 @@ Drivers.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000352  00000000  00000000  00000074  2**1
+  0 .text         00000552  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000a  00800060  00000352  000003c6  2**0
+  1 .data         00000024  00800060  00000552  000005c6  2**0
                   CONTENTS, ALLOC, LOAD, DATA
 
 Disassembly of section .text:
@@ -46,7 +46,7 @@ Disassembly of section .text:
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
   66:	e2 e5       	ldi	r30, 0x52	; 82
-  68:	f3 e0       	ldi	r31, 0x03	; 3
+  68:	f5 e0       	ldi	r31, 0x05	; 5
   6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
 
 0000006c <.do_copy_data_loop>:
@@ -54,11 +54,11 @@ Disassembly of section .text:
   6e:	0d 92       	st	X+, r0
 
 00000070 <.do_copy_data_start>:
-  70:	aa 36       	cpi	r26, 0x6A	; 106
+  70:	a4 38       	cpi	r26, 0x84	; 132
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
-  76:	0e 94 91 01 	call	0x322	; 0x322 <main>
-  7a:	0c 94 a7 01 	jmp	0x34e	; 0x34e <_exit>
+  76:	0e 94 74 02 	call	0x4e8	; 0x4e8 <main>
+  7a:	0c 94 a7 02 	jmp	0x54e	; 0x54e <_exit>
 
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -400,7 +400,7 @@ Disassembly of section .text:
  302:	48 f4       	brcc	.+18     	; 0x316 <SSD_vDisplayNum+0x16>
  304:	e8 2f       	mov	r30, r24
  306:	f0 e0       	ldi	r31, 0x00	; 0
- 308:	e0 5a       	subi	r30, 0xA0	; 160
+ 308:	e6 58       	subi	r30, 0x86	; 134
  30a:	ff 4f       	sbci	r31, 0xFF	; 255
  30c:	60 81       	ld	r22, Z
  30e:	60 95       	com	r22
@@ -414,30 +414,275 @@ Disassembly of section .text:
  31c:	0e 94 47 01 	call	0x28e	; 0x28e <DIO_vSetPortDir>
  320:	08 95       	ret
 
-00000322 <main>:
- 322:	1f 93       	push	r17
- 324:	cf 93       	push	r28
- 326:	df 93       	push	r29
- 328:	0e 94 8c 01 	call	0x318	; 0x318 <SSD_vInit>
- 32c:	10 e0       	ldi	r17, 0x00	; 0
- 32e:	c8 ec       	ldi	r28, 0xC8	; 200
- 330:	d0 e0       	ldi	r29, 0x00	; 0
- 332:	81 2f       	mov	r24, r17
- 334:	0e 94 80 01 	call	0x300	; 0x300 <SSD_vDisplayNum>
- 338:	88 e8       	ldi	r24, 0x88	; 136
- 33a:	93 e1       	ldi	r25, 0x13	; 19
- 33c:	fe 01       	movw	r30, r28
- 33e:	31 97       	sbiw	r30, 0x01	; 1
- 340:	f1 f7       	brne	.-4      	; 0x33e <main+0x1c>
- 342:	01 97       	sbiw	r24, 0x01	; 1
- 344:	d9 f7       	brne	.-10     	; 0x33c <main+0x1a>
- 346:	1f 5f       	subi	r17, 0xFF	; 255
- 348:	1a 30       	cpi	r17, 0x0A	; 10
- 34a:	99 f7       	brne	.-26     	; 0x332 <main+0x10>
- 34c:	ff cf       	rjmp	.-2      	; 0x34c <main+0x2a>
+00000322 <HLCD_vPrintNumber>:
+ 322:	08 95       	ret
 
-0000034e <_exit>:
- 34e:	f8 94       	cli
+00000324 <HLCD_vSetCursorPosition>:
+ 324:	08 95       	ret
 
-00000350 <__stop_program>:
- 350:	ff cf       	rjmp	.-2      	; 0x350 <__stop_program>
+00000326 <HLCD_vSaveCustomChar>:
+ 326:	08 95       	ret
+
+00000328 <HLCD_vDisplayCustomChar>:
+ 328:	08 95       	ret
+
+0000032a <HLCD_vSendData>:
+ 32a:	0f 93       	push	r16
+ 32c:	1f 93       	push	r17
+ 32e:	18 2f       	mov	r17, r24
+ 330:	80 e0       	ldi	r24, 0x00	; 0
+ 332:	60 e0       	ldi	r22, 0x00	; 0
+ 334:	41 e0       	ldi	r20, 0x01	; 1
+ 336:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 33a:	80 e0       	ldi	r24, 0x00	; 0
+ 33c:	61 e0       	ldi	r22, 0x01	; 1
+ 33e:	40 e0       	ldi	r20, 0x00	; 0
+ 340:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 344:	83 e0       	ldi	r24, 0x03	; 3
+ 346:	61 2f       	mov	r22, r17
+ 348:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIO_vSetPortVal>
+ 34c:	80 e0       	ldi	r24, 0x00	; 0
+ 34e:	62 e0       	ldi	r22, 0x02	; 2
+ 350:	41 e0       	ldi	r20, 0x01	; 1
+ 352:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 356:	00 ed       	ldi	r16, 0xD0	; 208
+ 358:	17 e0       	ldi	r17, 0x07	; 7
+ 35a:	c8 01       	movw	r24, r16
+ 35c:	01 97       	sbiw	r24, 0x01	; 1
+ 35e:	f1 f7       	brne	.-4      	; 0x35c <HLCD_vSendData+0x32>
+ 360:	80 e0       	ldi	r24, 0x00	; 0
+ 362:	62 e0       	ldi	r22, 0x02	; 2
+ 364:	40 e0       	ldi	r20, 0x00	; 0
+ 366:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 36a:	c8 01       	movw	r24, r16
+ 36c:	01 97       	sbiw	r24, 0x01	; 1
+ 36e:	f1 f7       	brne	.-4      	; 0x36c <HLCD_vSendData+0x42>
+ 370:	1f 91       	pop	r17
+ 372:	0f 91       	pop	r16
+ 374:	08 95       	ret
+
+00000376 <HLCD_vPrintString>:
+ 376:	1f 93       	push	r17
+ 378:	cf 93       	push	r28
+ 37a:	df 93       	push	r29
+ 37c:	ec 01       	movw	r28, r24
+ 37e:	10 e0       	ldi	r17, 0x00	; 0
+ 380:	03 c0       	rjmp	.+6      	; 0x388 <HLCD_vPrintString+0x12>
+ 382:	0e 94 95 01 	call	0x32a	; 0x32a <HLCD_vSendData>
+ 386:	1f 5f       	subi	r17, 0xFF	; 255
+ 388:	fe 01       	movw	r30, r28
+ 38a:	e1 0f       	add	r30, r17
+ 38c:	f1 1d       	adc	r31, r1
+ 38e:	80 81       	ld	r24, Z
+ 390:	88 23       	and	r24, r24
+ 392:	b9 f7       	brne	.-18     	; 0x382 <HLCD_vPrintString+0xc>
+ 394:	df 91       	pop	r29
+ 396:	cf 91       	pop	r28
+ 398:	1f 91       	pop	r17
+ 39a:	08 95       	ret
+
+0000039c <HLCD_vSendCommand>:
+ 39c:	0f 93       	push	r16
+ 39e:	1f 93       	push	r17
+ 3a0:	18 2f       	mov	r17, r24
+ 3a2:	80 e0       	ldi	r24, 0x00	; 0
+ 3a4:	60 e0       	ldi	r22, 0x00	; 0
+ 3a6:	40 e0       	ldi	r20, 0x00	; 0
+ 3a8:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 3ac:	80 e0       	ldi	r24, 0x00	; 0
+ 3ae:	61 e0       	ldi	r22, 0x01	; 1
+ 3b0:	40 e0       	ldi	r20, 0x00	; 0
+ 3b2:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 3b6:	83 e0       	ldi	r24, 0x03	; 3
+ 3b8:	61 2f       	mov	r22, r17
+ 3ba:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIO_vSetPortVal>
+ 3be:	80 e0       	ldi	r24, 0x00	; 0
+ 3c0:	62 e0       	ldi	r22, 0x02	; 2
+ 3c2:	41 e0       	ldi	r20, 0x01	; 1
+ 3c4:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 3c8:	00 ed       	ldi	r16, 0xD0	; 208
+ 3ca:	17 e0       	ldi	r17, 0x07	; 7
+ 3cc:	c8 01       	movw	r24, r16
+ 3ce:	01 97       	sbiw	r24, 0x01	; 1
+ 3d0:	f1 f7       	brne	.-4      	; 0x3ce <HLCD_vSendCommand+0x32>
+ 3d2:	80 e0       	ldi	r24, 0x00	; 0
+ 3d4:	62 e0       	ldi	r22, 0x02	; 2
+ 3d6:	40 e0       	ldi	r20, 0x00	; 0
+ 3d8:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 3dc:	c8 01       	movw	r24, r16
+ 3de:	01 97       	sbiw	r24, 0x01	; 1
+ 3e0:	f1 f7       	brne	.-4      	; 0x3de <HLCD_vSendCommand+0x42>
+ 3e2:	1f 91       	pop	r17
+ 3e4:	0f 91       	pop	r16
+ 3e6:	08 95       	ret
+
+000003e8 <HLCD_vInit>:
+ 3e8:	0f 93       	push	r16
+ 3ea:	1f 93       	push	r17
+ 3ec:	80 e0       	ldi	r24, 0x00	; 0
+ 3ee:	60 e0       	ldi	r22, 0x00	; 0
+ 3f0:	41 e0       	ldi	r20, 0x01	; 1
+ 3f2:	0e 94 41 00 	call	0x82	; 0x82 <DIO_vSetPinDir>
+ 3f6:	80 e0       	ldi	r24, 0x00	; 0
+ 3f8:	61 e0       	ldi	r22, 0x01	; 1
+ 3fa:	41 e0       	ldi	r20, 0x01	; 1
+ 3fc:	0e 94 41 00 	call	0x82	; 0x82 <DIO_vSetPinDir>
+ 400:	80 e0       	ldi	r24, 0x00	; 0
+ 402:	62 e0       	ldi	r22, 0x02	; 2
+ 404:	41 e0       	ldi	r20, 0x01	; 1
+ 406:	0e 94 41 00 	call	0x82	; 0x82 <DIO_vSetPinDir>
+ 40a:	83 e0       	ldi	r24, 0x03	; 3
+ 40c:	6f ef       	ldi	r22, 0xFF	; 255
+ 40e:	0e 94 47 01 	call	0x28e	; 0x28e <DIO_vSetPortDir>
+ 412:	84 ef       	ldi	r24, 0xF4	; 244
+ 414:	91 e0       	ldi	r25, 0x01	; 1
+ 416:	28 ec       	ldi	r18, 0xC8	; 200
+ 418:	30 e0       	ldi	r19, 0x00	; 0
+ 41a:	f9 01       	movw	r30, r18
+ 41c:	31 97       	sbiw	r30, 0x01	; 1
+ 41e:	f1 f7       	brne	.-4      	; 0x41c <HLCD_vInit+0x34>
+ 420:	01 97       	sbiw	r24, 0x01	; 1
+ 422:	d9 f7       	brne	.-10     	; 0x41a <HLCD_vInit+0x32>
+ 424:	88 e3       	ldi	r24, 0x38	; 56
+ 426:	0e 94 ce 01 	call	0x39c	; 0x39c <HLCD_vSendCommand>
+ 42a:	00 ed       	ldi	r16, 0xD0	; 208
+ 42c:	17 e0       	ldi	r17, 0x07	; 7
+ 42e:	c8 01       	movw	r24, r16
+ 430:	01 97       	sbiw	r24, 0x01	; 1
+ 432:	f1 f7       	brne	.-4      	; 0x430 <HLCD_vInit+0x48>
+ 434:	8c e0       	ldi	r24, 0x0C	; 12
+ 436:	0e 94 ce 01 	call	0x39c	; 0x39c <HLCD_vSendCommand>
+ 43a:	c8 01       	movw	r24, r16
+ 43c:	01 97       	sbiw	r24, 0x01	; 1
+ 43e:	f1 f7       	brne	.-4      	; 0x43c <HLCD_vInit+0x54>
+ 440:	81 e0       	ldi	r24, 0x01	; 1
+ 442:	0e 94 ce 01 	call	0x39c	; 0x39c <HLCD_vSendCommand>
+ 446:	80 ea       	ldi	r24, 0xA0	; 160
+ 448:	9f e0       	ldi	r25, 0x0F	; 15
+ 44a:	01 97       	sbiw	r24, 0x01	; 1
+ 44c:	f1 f7       	brne	.-4      	; 0x44a <HLCD_vInit+0x62>
+ 44e:	86 e0       	ldi	r24, 0x06	; 6
+ 450:	0e 94 ce 01 	call	0x39c	; 0x39c <HLCD_vSendCommand>
+ 454:	c8 01       	movw	r24, r16
+ 456:	01 97       	sbiw	r24, 0x01	; 1
+ 458:	f1 f7       	brne	.-4      	; 0x456 <HLCD_vInit+0x6e>
+ 45a:	1f 91       	pop	r17
+ 45c:	0f 91       	pop	r16
+ 45e:	08 95       	ret
+
+00000460 <KPD_u8GetPressedKey>:
+ 460:	df 92       	push	r13
+ 462:	ef 92       	push	r14
+ 464:	ff 92       	push	r15
+ 466:	0f 93       	push	r16
+ 468:	1f 93       	push	r17
+ 46a:	cf 93       	push	r28
+ 46c:	df 93       	push	r29
+ 46e:	dd 24       	eor	r13, r13
+ 470:	ff 24       	eor	r15, r15
+ 472:	ee 24       	eor	r14, r14
+ 474:	e3 94       	inc	r14
+ 476:	c0 e2       	ldi	r28, 0x20	; 32
+ 478:	de e4       	ldi	r29, 0x4E	; 78
+ 47a:	81 e0       	ldi	r24, 0x01	; 1
+ 47c:	6f 2d       	mov	r22, r15
+ 47e:	40 e0       	ldi	r20, 0x00	; 0
+ 480:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 484:	0e 2d       	mov	r16, r14
+ 486:	14 e0       	ldi	r17, 0x04	; 4
+ 488:	81 e0       	ldi	r24, 0x01	; 1
+ 48a:	61 2f       	mov	r22, r17
+ 48c:	0e 94 27 01 	call	0x24e	; 0x24e <DIO_u8GetPinVal>
+ 490:	88 23       	and	r24, r24
+ 492:	09 f4       	brne	.+2      	; 0x496 <KPD_u8GetPressedKey+0x36>
+ 494:	d0 2e       	mov	r13, r16
+ 496:	81 e0       	ldi	r24, 0x01	; 1
+ 498:	61 2f       	mov	r22, r17
+ 49a:	0e 94 27 01 	call	0x24e	; 0x24e <DIO_u8GetPinVal>
+ 49e:	88 23       	and	r24, r24
+ 4a0:	d1 f3       	breq	.-12     	; 0x496 <KPD_u8GetPressedKey+0x36>
+ 4a2:	ce 01       	movw	r24, r28
+ 4a4:	01 97       	sbiw	r24, 0x01	; 1
+ 4a6:	f1 f7       	brne	.-4      	; 0x4a4 <KPD_u8GetPressedKey+0x44>
+ 4a8:	1f 5f       	subi	r17, 0xFF	; 255
+ 4aa:	0f 5f       	subi	r16, 0xFF	; 255
+ 4ac:	18 30       	cpi	r17, 0x08	; 8
+ 4ae:	61 f7       	brne	.-40     	; 0x488 <KPD_u8GetPressedKey+0x28>
+ 4b0:	81 e0       	ldi	r24, 0x01	; 1
+ 4b2:	6f 2d       	mov	r22, r15
+ 4b4:	41 e0       	ldi	r20, 0x01	; 1
+ 4b6:	0e 94 b4 00 	call	0x168	; 0x168 <DIO_vSetPinVal>
+ 4ba:	f3 94       	inc	r15
+ 4bc:	84 e0       	ldi	r24, 0x04	; 4
+ 4be:	e8 0e       	add	r14, r24
+ 4c0:	f8 16       	cp	r15, r24
+ 4c2:	d9 f6       	brne	.-74     	; 0x47a <KPD_u8GetPressedKey+0x1a>
+ 4c4:	8d 2d       	mov	r24, r13
+ 4c6:	df 91       	pop	r29
+ 4c8:	cf 91       	pop	r28
+ 4ca:	1f 91       	pop	r17
+ 4cc:	0f 91       	pop	r16
+ 4ce:	ff 90       	pop	r15
+ 4d0:	ef 90       	pop	r14
+ 4d2:	df 90       	pop	r13
+ 4d4:	08 95       	ret
+
+000004d6 <KPD_vInit>:
+ 4d6:	81 e0       	ldi	r24, 0x01	; 1
+ 4d8:	6f e0       	ldi	r22, 0x0F	; 15
+ 4da:	0e 94 47 01 	call	0x28e	; 0x28e <DIO_vSetPortDir>
+ 4de:	81 e0       	ldi	r24, 0x01	; 1
+ 4e0:	6f ef       	ldi	r22, 0xFF	; 255
+ 4e2:	0e 94 58 01 	call	0x2b0	; 0x2b0 <DIO_vSetPortVal>
+ 4e6:	08 95       	ret
+
+000004e8 <main>:
+ 4e8:	cf 93       	push	r28
+ 4ea:	df 93       	push	r29
+ 4ec:	0e 94 f4 01 	call	0x3e8	; 0x3e8 <HLCD_vInit>
+ 4f0:	c8 ec       	ldi	r28, 0xC8	; 200
+ 4f2:	d0 e0       	ldi	r29, 0x00	; 0
+ 4f4:	80 e6       	ldi	r24, 0x60	; 96
+ 4f6:	90 e0       	ldi	r25, 0x00	; 0
+ 4f8:	0e 94 bb 01 	call	0x376	; 0x376 <HLCD_vPrintString>
+ 4fc:	80 e1       	ldi	r24, 0x10	; 16
+ 4fe:	97 e2       	ldi	r25, 0x27	; 39
+ 500:	fe 01       	movw	r30, r28
+ 502:	31 97       	sbiw	r30, 0x01	; 1
+ 504:	f1 f7       	brne	.-4      	; 0x502 <main+0x1a>
+ 506:	01 97       	sbiw	r24, 0x01	; 1
+ 508:	d9 f7       	brne	.-10     	; 0x500 <main+0x18>
+ 50a:	81 e0       	ldi	r24, 0x01	; 1
+ 50c:	0e 94 ce 01 	call	0x39c	; 0x39c <HLCD_vSendCommand>
+ 510:	82 e3       	ldi	r24, 0x32	; 50
+ 512:	0e 94 95 01 	call	0x32a	; 0x32a <HLCD_vSendData>
+ 516:	81 e3       	ldi	r24, 0x31	; 49
+ 518:	0e 94 95 01 	call	0x32a	; 0x32a <HLCD_vSendData>
+ 51c:	80 e1       	ldi	r24, 0x10	; 16
+ 51e:	97 e2       	ldi	r25, 0x27	; 39
+ 520:	fe 01       	movw	r30, r28
+ 522:	31 97       	sbiw	r30, 0x01	; 1
+ 524:	f1 f7       	brne	.-4      	; 0x522 <main+0x3a>
+ 526:	01 97       	sbiw	r24, 0x01	; 1
+ 528:	d9 f7       	brne	.-10     	; 0x520 <main+0x38>
+ 52a:	81 e0       	ldi	r24, 0x01	; 1
+ 52c:	0e 94 ce 01 	call	0x39c	; 0x39c <HLCD_vSendCommand>
+ 530:	8d e6       	ldi	r24, 0x6D	; 109
+ 532:	90 e0       	ldi	r25, 0x00	; 0
+ 534:	0e 94 bb 01 	call	0x376	; 0x376 <HLCD_vPrintString>
+ 538:	80 e1       	ldi	r24, 0x10	; 16
+ 53a:	97 e2       	ldi	r25, 0x27	; 39
+ 53c:	fe 01       	movw	r30, r28
+ 53e:	31 97       	sbiw	r30, 0x01	; 1
+ 540:	f1 f7       	brne	.-4      	; 0x53e <main+0x56>
+ 542:	01 97       	sbiw	r24, 0x01	; 1
+ 544:	d9 f7       	brne	.-10     	; 0x53c <main+0x54>
+ 546:	81 e0       	ldi	r24, 0x01	; 1
+ 548:	0e 94 ce 01 	call	0x39c	; 0x39c <HLCD_vSendCommand>
+ 54c:	d3 cf       	rjmp	.-90     	; 0x4f4 <main+0xc>
+
+0000054e <_exit>:
+ 54e:	f8 94       	cli
+
+00000550 <__stop_program>:
+ 550:	ff cf       	rjmp	.-2      	; 0x550 <__stop_program>

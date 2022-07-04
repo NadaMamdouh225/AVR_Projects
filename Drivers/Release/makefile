@@ -10,6 +10,8 @@ RM := rm -rf
 -include sources.mk
 -include IMT_School/COTS/MCAL/DIO/subdir.mk
 -include IMT_School/COTS/HAL/SSD/subdir.mk
+-include IMT_School/COTS/HAL/LCD/subdir.mk
+-include IMT_School/COTS/HAL/KPD/subdir.mk
 -include IMT_School/COTS/APP/subdir.mk
 -include subdir.mk
 -include objects.mk

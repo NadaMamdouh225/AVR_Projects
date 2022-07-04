@@ -22,6 +22,8 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 IMT_School/COTS/APP \
+IMT_School/COTS/HAL/KPD \
+IMT_School/COTS/HAL/LCD \
 IMT_School/COTS/HAL/SSD \
 IMT_School/COTS/MCAL/DIO \
 
