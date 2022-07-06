@@ -3,4 +3,4 @@ This is a password lock mechanism project using ESP microcontroller and the code
 To see how this project works,check virtual simulation link:
 https://wokwi.com/projects/330915663978693202
 
-To use bluetooth keypad ,check the main file (.ino) and install the app on you mobile (.aia) file
+To use bluetooth keypad ,copy this code into your arduino ide (.ino) and install the app on you mobile (.aia) file
