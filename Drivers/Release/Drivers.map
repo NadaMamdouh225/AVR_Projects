@@ -1,9 +1,13 @@
 Archive member included because of file (symbol)
 
+d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                              ./IMT_School/COTS/HAL/LCD/LCD_prg.o (__divmodsi4)
 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                               d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
                               ./IMT_School/COTS/HAL/SSD/SSD_prg.o (__do_copy_data)
+d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                              d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o) (__udivmodsi4)
 
 Memory Configuration
 
@@ -20,6 +24,7 @@ Linker script and memory map
 
 LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
 LOAD ./IMT_School/COTS/MCAL/DIO/DIO_prg.o
+LOAD ./IMT_School/COTS/MCAL/ADC/ADC_prg.o
 LOAD ./IMT_School/COTS/HAL/SSD/SSD_prg.o
 LOAD ./IMT_School/COTS/HAL/LCD/LCD_prg.o
 LOAD ./IMT_School/COTS/HAL/KPD/KPD_prg.o
@@ -118,7 +123,7 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x552
+.text           0x00000000      0x67e
  *(.vectors)
  .vectors       0x00000000       0x54 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -194,12 +199,15 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
                 0x0000007e                __vector_18
                 0x0000007e                __vector_20
  .text          0x00000082        0x0 ./IMT_School/COTS/MCAL/DIO/DIO_prg.o
+ .text          0x00000082        0x0 ./IMT_School/COTS/MCAL/ADC/ADC_prg.o
  .text          0x00000082        0x0 ./IMT_School/COTS/HAL/SSD/SSD_prg.o
  .text          0x00000082        0x0 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
  .text          0x00000082        0x0 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
  .text          0x00000082        0x0 ./IMT_School/COTS/APP/main.o
+ .text          0x00000082        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
  .text          0x00000082        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .text          0x00000082        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000082        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
                 0x00000082                . = ALIGN (0x2)
  *(.text.*)
  .text.DIO_vSetPinDir
@@ -220,54 +228,64 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
  .text.DIO_u8GetPortVal
                 0x000002d2       0x24 ./IMT_School/COTS/MCAL/DIO/DIO_prg.o
                 0x000002d2                DIO_u8GetPortVal
+ .text.MADC_vInit
+                0x000002f6       0x16 ./IMT_School/COTS/MCAL/ADC/ADC_prg.o
+                0x000002f6                MADC_vInit
+ .text.MADC_u16AnalogRead
+                0x0000030c       0x1a ./IMT_School/COTS/MCAL/ADC/ADC_prg.o
+                0x0000030c                MADC_u16AnalogRead
  .text.SSD_vTurnOff
-                0x000002f6        0xa ./IMT_School/COTS/HAL/SSD/SSD_prg.o
-                0x000002f6                SSD_vTurnOff
+                0x00000326        0xa ./IMT_School/COTS/HAL/SSD/SSD_prg.o
+                0x00000326                SSD_vTurnOff
  .text.SSD_vDisplayNum
-                0x00000300       0x18 ./IMT_School/COTS/HAL/SSD/SSD_prg.o
-                0x00000300                SSD_vDisplayNum
+                0x00000330       0x18 ./IMT_School/COTS/HAL/SSD/SSD_prg.o
+                0x00000330                SSD_vDisplayNum
  .text.SSD_vInit
-                0x00000318        0xa ./IMT_School/COTS/HAL/SSD/SSD_prg.o
-                0x00000318                SSD_vInit
- .text.HLCD_vPrintNumber
-                0x00000322        0x2 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x00000322                HLCD_vPrintNumber
+                0x00000348        0xa ./IMT_School/COTS/HAL/SSD/SSD_prg.o
+                0x00000348                SSD_vInit
  .text.HLCD_vSetCursorPosition
-                0x00000324        0x2 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x00000324                HLCD_vSetCursorPosition
+                0x00000352        0x2 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x00000352                HLCD_vSetCursorPosition
  .text.HLCD_vSaveCustomChar
-                0x00000326        0x2 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x00000326                HLCD_vSaveCustomChar
+                0x00000354        0x2 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x00000354                HLCD_vSaveCustomChar
  .text.HLCD_vDisplayCustomChar
-                0x00000328        0x2 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x00000328                HLCD_vDisplayCustomChar
+                0x00000356        0x2 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x00000356                HLCD_vDisplayCustomChar
  .text.HLCD_vSendData
-                0x0000032a       0x4c ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x0000032a                HLCD_vSendData
+                0x00000358       0x4c ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x00000358                HLCD_vSendData
+ .text.HLCD_vPrintNumber
+                0x000003a4       0xa8 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x000003a4                HLCD_vPrintNumber
  .text.HLCD_vPrintString
-                0x00000376       0x26 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x00000376                HLCD_vPrintString
+                0x0000044c       0x26 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x0000044c                HLCD_vPrintString
  .text.HLCD_vSendCommand
-                0x0000039c       0x4c ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x0000039c                HLCD_vSendCommand
+                0x00000472       0x4c ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x00000472                HLCD_vSendCommand
  .text.HLCD_vInit
-                0x000003e8       0x78 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
-                0x000003e8                HLCD_vInit
+                0x000004be       0x78 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+                0x000004be                HLCD_vInit
  .text.KPD_u8GetPressedKey
-                0x00000460       0x76 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
-                0x00000460                KPD_u8GetPressedKey
+                0x00000536       0x76 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
+                0x00000536                KPD_u8GetPressedKey
  .text.KPD_vInit
-                0x000004d6       0x12 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
-                0x000004d6                KPD_vInit
- .text.main     0x000004e8       0x66 ./IMT_School/COTS/APP/main.o
-                0x000004e8                main
- .text.libgcc   0x0000054e        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000054e        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
-                0x0000054e                . = ALIGN (0x2)
+                0x000005ac       0x12 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
+                0x000005ac                KPD_vInit
+ .text.main     0x000005be       0x42 ./IMT_School/COTS/APP/main.o
+                0x000005be                main
+ .text.libgcc   0x00000600       0x36 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x00000600                __divmodsi4
+ .text.libgcc   0x00000636        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000636        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000636       0x44 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000636                __udivmodsi4
+                0x0000067a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000054e        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000054e                exit
-                0x0000054e                _exit
+ .fini9         0x0000067a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000067a                exit
+                0x0000067a                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -286,54 +304,60 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000054e        0x4 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000067a        0x4 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000552                _etext = .
+                0x0000067e                _etext = .
 
-.data           0x00800060       0x24 load address 0x00000552
+.data           0x00800060        0xa load address 0x0000067e
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .data          0x00800060        0x0 ./IMT_School/COTS/MCAL/DIO/DIO_prg.o
+ .data          0x00800060        0x0 ./IMT_School/COTS/MCAL/ADC/ADC_prg.o
  .data          0x00800060        0x0 ./IMT_School/COTS/HAL/SSD/SSD_prg.o
  .data          0x00800060        0x0 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
  .data          0x00800060        0x0 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
- .data          0x00800060       0x1a ./IMT_School/COTS/APP/main.o
- .data          0x0080007a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .data          0x0080007a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800060        0x0 ./IMT_School/COTS/APP/main.o
+ .data          0x00800060        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .data          0x00800060        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800060        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
  .rodata.CGS_u8SSD_Nums
-                0x0080007a        0xa ./IMT_School/COTS/HAL/SSD/SSD_prg.o
+                0x00800060        0xa ./IMT_School/COTS/HAL/SSD/SSD_prg.o
  *(.gnu.linkonce.d*)
-                0x00800084                . = ALIGN (0x2)
-                0x00800084                _edata = .
-                0x00800084                PROVIDE (__data_end, .)
+                0x0080006a                . = ALIGN (0x2)
+                0x0080006a                _edata = .
+                0x0080006a                PROVIDE (__data_end, .)
 
-.bss            0x00800084        0x0
-                0x00800084                PROVIDE (__bss_start, .)
+.bss            0x0080006a        0x0
+                0x0080006a                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x00800084        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
- .bss           0x00800084        0x0 ./IMT_School/COTS/MCAL/DIO/DIO_prg.o
- .bss           0x00800084        0x0 ./IMT_School/COTS/HAL/SSD/SSD_prg.o
- .bss           0x00800084        0x0 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
- .bss           0x00800084        0x0 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
- .bss           0x00800084        0x0 ./IMT_School/COTS/APP/main.o
- .bss           0x00800084        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .bss           0x00800084        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x0080006a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x0080006a        0x0 ./IMT_School/COTS/MCAL/DIO/DIO_prg.o
+ .bss           0x0080006a        0x0 ./IMT_School/COTS/MCAL/ADC/ADC_prg.o
+ .bss           0x0080006a        0x0 ./IMT_School/COTS/HAL/SSD/SSD_prg.o
+ .bss           0x0080006a        0x0 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
+ .bss           0x0080006a        0x0 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
+ .bss           0x0080006a        0x0 ./IMT_School/COTS/APP/main.o
+ .bss           0x0080006a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .bss           0x0080006a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x0080006a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x0080006a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  *(.bss*)
  *(COMMON)
-                0x00800084                PROVIDE (__bss_end, .)
-                0x00000552                __data_load_start = LOADADDR (.data)
-                0x00000576                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080006a                PROVIDE (__bss_end, .)
+                0x0000067e                __data_load_start = LOADADDR (.data)
+                0x00000688                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800084        0x0
-                0x00800084                PROVIDE (__noinit_start, .)
+.noinit         0x0080006a        0x0
+                0x0080006a                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800084                PROVIDE (__noinit_end, .)
-                0x00800084                _end = .
-                0x00800084                PROVIDE (__heap_start, .)
+                0x0080006a                PROVIDE (__noinit_end, .)
+                0x0080006a                _end = .
+                0x0080006a                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)

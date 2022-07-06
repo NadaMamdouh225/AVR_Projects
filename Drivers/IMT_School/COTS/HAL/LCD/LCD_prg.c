@@ -71,14 +71,26 @@ void HLCD_vPrintString(char A_s8String[])
 	}
 
 }
+
 void HLCD_vPrintNumber(s32 A_s32Number)
 {
-	for(s32 L_s32Number = 0;L_s32Number < A_s32Number;L_s32Number++)
+	u8 L_u8Digits[10] = {0};
+	u8 L_u8Counter = 0;
+	/* TODO: IMplement negative number handling  	*/
+	/* TODO: implement Zero in units corner case    */
+	/* save reversed in array */
+	while(A_s32Number > 0)
 	{
-
-
+		L_u8Digits[L_u8Counter] = A_s32Number%10 ;
+		L_u8Counter++;
+		A_s32Number /= 10 ;
 	}
 
+	/* print array in reverese  */
+	for(s8 L_s8PrintIndex=0; L_s8PrintIndex >= 0; L_s8PrintIndex-- )
+	{
+		HLCD_vSendData('0' + L_u8Digits[L_s8PrintIndex]);
+	}
 }
 void HLCD_vSetCursorPosition(u8 A_u8LinePostion,u8 A_u8LineNo)
 {

@@ -38,12 +38,6 @@ endif
 LSS += \
 Drivers.lss \
 
-FLASH_IMAGE += \
-Drivers.hex \
-
-EEPROM_IMAGE += \
-Drivers.eep \
-
 SIZEDUMMY += \
 sizedummy \
 
@@ -65,18 +59,6 @@ Drivers.lss: Drivers.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Drivers.hex: Drivers.elf
-	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Drivers.elf  "Drivers.hex"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-Drivers.eep: Drivers.elf
-	@echo 'Create eeprom image (ihex format)'
-	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Drivers.elf  "Drivers.eep"
-	@echo 'Finished building: $@'
-	@echo ' '
-
 sizedummy: Drivers.elf
 	@echo 'Invoking: Print Size'
 	-avr-size --format=avr --mcu=atmega32 Drivers.elf
@@ -85,10 +67,10 @@ sizedummy: Drivers.elf
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Drivers.elf
+	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Drivers.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(SIZEDUMMY)
 
 .PHONY: all clean dependents
 .SECONDARY:
