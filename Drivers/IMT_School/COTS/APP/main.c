@@ -13,18 +13,46 @@
 int main (void)
 {
    MADC_vInit();
-   HLCD_vInit();
-   u16 adc_value = 0;
+   DIO_vSetPortDir(DIO_PORTB,0xFF);
+   u16 ADC_value = 0;
 
-
+ /*
+  *  255 -> 1023
+  *  ??   ->  ADC Value
+  *
+  *  mapped value =??
+  *
+  */
+   u8 BitValue = 0x01;
+   u8 PinValue = 0x00;
 	while(1)
 	{
-		adc_value = MADC_u16AnalogRead(0);
-		HLCD_vSendCommand(LCD_CLEAR);
-		HLCD_vPrintNumber(adc_value);
-		_delay_ms(2000);
+		ADC_value = MADC_u16AnalogRead(CHANNEL_0);
+	    u16 LedLevel = MADC_u8Map(ADC_value,0,1203,0,8);
+	    for(u8 Level = 0; Level < LedLevel ;Level++)
+	    {
+
+	    	if(Level <LedLevel)
+	    	{
+	    		DIO_vSetPinVal(DIO_PORTB,PinValue+Level,DIO_HIGH);
+	    	}
+	    	else
+	    	{
+	    		DIO_vSetPinVal(DIO_PORTB,PinValue+Level,DIO_LOW);
+	    	}
+	   }
+
 
 
 	}
+
 }
+
+/*DIO_vSetPinVal(DIO_PORTB,PinValue,BitValue);
+				_delay_ms(1000);
+				BitValue = BitValue >>1;
+				BitValue = (BitValue & 0xFE) | (0x01);
+				PinValue ++;
+				*/
+
 
