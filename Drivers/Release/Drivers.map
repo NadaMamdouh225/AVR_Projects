@@ -149,7 +149,7 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x116e
+.text           0x00000000     0x118e
  *(.vectors)
  .vectors       0x00000000       0x54 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -330,30 +330,30 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
                 0x00000efe       0x78 ./IMT_School/COTS/HAL/LCD/LCD_prg.o
                 0x00000efe                HLCD_vInit
  .text.KPD_u8GetPressedKey
-                0x00000f76       0x76 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
+                0x00000f76       0x96 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
                 0x00000f76                KPD_u8GetPressedKey
  .text.KPD_vInit
-                0x00000fec       0x12 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
-                0x00000fec                KPD_vInit
- .text.main     0x00000ffe       0x5c ./IMT_School/COTS/APP/main.o
-                0x00000ffe                main
- .text.libgcc   0x0000105a       0x28 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x0000105a                __udivmodhi4
- .text.libgcc   0x00001082       0x36 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
-                0x00001082                __divmodsi4
- .text.libgcc   0x000010b8        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000010b8        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000010b8       0x44 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x000010b8                __udivmodsi4
- .text.libgcc   0x000010fc       0x38 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x000010fc                __prologue_saves__
- .text.libgcc   0x00001134       0x36 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x00001134                __epilogue_restores__
-                0x0000116a                . = ALIGN (0x2)
+                0x0000100c       0x12 ./IMT_School/COTS/HAL/KPD/KPD_prg.o
+                0x0000100c                KPD_vInit
+ .text.main     0x0000101e       0x5c ./IMT_School/COTS/APP/main.o
+                0x0000101e                main
+ .text.libgcc   0x0000107a       0x28 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x0000107a                __udivmodhi4
+ .text.libgcc   0x000010a2       0x36 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x000010a2                __divmodsi4
+ .text.libgcc   0x000010d8        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000010d8        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000010d8       0x44 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x000010d8                __udivmodsi4
+ .text.libgcc   0x0000111c       0x38 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x0000111c                __prologue_saves__
+ .text.libgcc   0x00001154       0x36 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00001154                __epilogue_restores__
+                0x0000118a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000116a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000116a                exit
-                0x0000116a                _exit
+ .fini9         0x0000118a        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000118a                exit
+                0x0000118a                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -372,11 +372,11 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000116a        0x4 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000118a        0x4 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000116e                _etext = .
+                0x0000118e                _etext = .
 
-.data           0x00800060      0x10a load address 0x0000116e
+.data           0x00800060      0x10a load address 0x0000118e
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -444,8 +444,8 @@ LOAD d:/imt_school/imt tools/imt tools/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/
  *(.bss*)
  *(COMMON)
                 0x0080016a                PROVIDE (__bss_end, .)
-                0x0000116e                __data_load_start = LOADADDR (.data)
-                0x00001278                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000118e                __data_load_start = LOADADDR (.data)
+                0x00001298                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080016a        0x0
                 0x0080016a                PROVIDE (__noinit_start, .)
