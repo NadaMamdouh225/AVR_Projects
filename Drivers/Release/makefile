@@ -8,6 +8,9 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include IMT_School/COTS/MCAL/TIMER/subdir.mk
+-include IMT_School/COTS/MCAL/GIE/subdir.mk
+-include IMT_School/COTS/MCAL/EXTI/subdir.mk
 -include IMT_School/COTS/MCAL/DIO/subdir.mk
 -include IMT_School/COTS/MCAL/ADC/subdir.mk
 -include IMT_School/COTS/HAL/SSD/subdir.mk

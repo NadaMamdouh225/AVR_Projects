@@ -176,6 +176,23 @@ u8   DIO_u8GetPortVal(u8 A_u8PortNo)
 	return L_u8PortVal;
 
 }
-
+void DIO_vTogPinVal(u8 A_u8PortNo,u8 A_u8PinNo)
+{
+	switch(A_u8PortNo)
+	{
+	case DIO_PORTA:
+		TOGGLE_BIT(PORTA,A_u8PinNo);
+		break;
+	case DIO_PORTB:
+			TOGGLE_BIT(PORTB,A_u8PinNo);
+			break;
+	case DIO_PORTC:
+			TOGGLE_BIT(PORTC,A_u8PinNo);
+			break;
+	case DIO_PORTD:
+			TOGGLE_BIT(PORTD,A_u8PinNo);
+			break;
+	}
+}
 
 

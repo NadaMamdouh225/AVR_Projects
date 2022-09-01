@@ -21,7 +21,7 @@
 
 void MADC_vInit(void);
 u16 MADC_u16AnalogRead(u8 A_u8ChannelNo);
-u8 MADC_u8Map(f32 A_f32ADC_Value,u16 A_u16OriginalMin ,u16 A_u16OriginalMax,u16 A_u16NewMin,u16 A_u16NewMax);
+u8 MADC_u8Map(f32 A_f32Sensor_Value,u16 A_u16InputMin ,u16 A_u16InputMax,u16 A_u16OutputMin,u16 A_u16OutputMax);
 
  /* Interrupt based APIs */
 void MADC_vStartConvertion(u8 A_u8ChannelNo);

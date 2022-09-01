@@ -50,56 +50,25 @@ u16 MADC_u16AnalogRead(u8 A_u8ChannelNo)
 
 
 }
-u8 MADC_u8Map(f32 A_f32ADC_Value,u16 A_u16OriginalMin ,u16 A_u16OriginalMax,u16 A_u16NewMin,u16 A_u16NewMax)
+
+u8 MADC_u8Map(f32 A_f32Sensor_Value,u16 A_u16InputMin ,u16 A_u16InputMax,u16 A_u16OutputMin,u16 A_u16OutputMax)
 {
-	u16 L_u16OriginalRange;
-	u16 L_u16NewRange;
-	u8  L_u8Step;
-	u16 L_u16MappedValue;
+	u16 L_u16Slope  = 0;
+	u16 L_u16Value  = 0;
+	u16 L_u16Input = 0;
+	u16 L_u16Output = 0;
+	 /* y = mx + c */    /* =>input: t =>  output: t*slope(y/x) */
+	 /*slope = (y2 - y1) / (x2 - x1)*/
+	A_u16InputMin  = 0;
+	A_u16OutputMin = 0;
+	L_u16Slope = (A_u16OutputMax - A_u16OutputMin)/(A_u16InputMax - A_u16InputMin);
+	L_u16Input = A_u16InputMax - A_u16InputMin;
+	L_u16Output = (L_u16Slope* L_u16Input );
+	A_u16InputMax  = L_u16Input;
+	A_u16OutputMax = L_u16Output;
+	L_u16Value = (A_u16OutputMax * A_f32Sensor_Value )/A_u16InputMax;
 
-	L_u16OriginalRange = A_u16OriginalMax - A_u16OriginalMin +1 ;      //ex: 1024
-	L_u16NewRange = A_u16NewMax - A_u16NewMin +1;                    //ex: 8
-	L_u8Step = L_u16OriginalRange / L_u16NewRange;                    // ex: 128
-
-	if(A_f32ADC_Value)
-	{
-		if((A_f32ADC_Value>=(A_u16NewMin*L_u8Step) )|(A_f32ADC_Value<= (L_u8Step-1)))
-		{
-			L_u16MappedValue = 0;
-		}
-		else if(A_f32ADC_Value>=(1*L_u8Step) |A_f32ADC_Value<= (2*L_u8Step-1))
-		{
-			L_u16MappedValue = 1;
-		}
-		else if(A_f32ADC_Value>=(2*L_u8Step) |A_f32ADC_Value<= (3*L_u8Step-1))
-		{
-			L_u16MappedValue = 2;
-		}
-		else if(A_f32ADC_Value>=(3*L_u8Step) |A_f32ADC_Value<= (4*L_u8Step-1))
-		{
-			L_u16MappedValue = 3;
-		}
-		else if(A_f32ADC_Value>=(4*L_u8Step) |A_f32ADC_Value<= (5*L_u8Step-1))
-		{
-			L_u16MappedValue = 4;
-		}
-		else if(A_f32ADC_Value>=(5*L_u8Step) |A_f32ADC_Value<= (6*L_u8Step-1))
-		{
-			L_u16MappedValue = 5;
-		}
-		else if(A_f32ADC_Value>=(6*L_u8Step) |A_f32ADC_Value<= (7*L_u8Step-1))
-		{
-			L_u16MappedValue = 6;
-		}
-		else if(A_f32ADC_Value>=(7*L_u8Step) |A_f32ADC_Value<= (8*L_u8Step-1))
-		{
-			L_u16MappedValue = 7;
-		}
-	}
-
-
-	return L_u16MappedValue ;
-
+	return L_u16Value ;
 }
 
 void MADC_vStartConvertion(u8 A_u8ChannelNo)

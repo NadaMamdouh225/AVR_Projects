@@ -25,10 +25,12 @@ int main (void)
   */
    u8 BitValue = 0x01;
    u8 PinValue = 0x00;
+   // create array of leds
+
 	while(1)
 	{
 		ADC_value = MADC_u16AnalogRead(CHANNEL_0);
-	    u16 LedLevel = MADC_u8Map(ADC_value,0,1203,0,8);
+	    u16 LedLevel = MADC_u8Map(ADC_value,0,1023,0,8);
 	    for(u8 Level = 0; Level < LedLevel ;Level++)
 	    {
 
