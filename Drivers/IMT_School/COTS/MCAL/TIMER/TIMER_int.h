@@ -8,6 +8,16 @@
 #ifndef IMT_SCHOOL_COTS_MCAL_TIMER_TIMER_INT_H_
 #define IMT_SCHOOL_COTS_MCAL_TIMER_TIMER_INT_H_
 
+#define TOIE0                 0
+
+#define NO_CLK                0b000
+#define CLK_NO_PRESCALING     0b001
+#define CLK_PRESCALING_8      0b010
+#define CLK_PRESCALING_64     0b011
+#define CLK_PRESCALING_256    0b100
+#define CLK_PRESCALING_1024   0b101
+#define EXT_CLK_FALLING_EDGE  0b110
+#define EXT_CLK_RISING_EDGE   0b111
 
 
 void MTIMER_vInit(void);

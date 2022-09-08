@@ -1,5 +1,4 @@
-/*
- * TIMER_prv.h
+/** TIMER_prv.h
  *
  *  Created on: Jul 19, 2022
  *      Author: Nada Mamdouh
