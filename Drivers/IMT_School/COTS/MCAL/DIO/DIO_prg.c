@@ -8,9 +8,9 @@
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
-#include <avr/io.h>
-#include <util/delay.h>
+//#include <util/delay.h>
 #include "DIO_int.h"
+#include "DIO_prv.h"
 
 
 
@@ -159,16 +159,16 @@ u8   DIO_u8GetPortVal(u8 A_u8PortNo)
 	switch(A_u8PortNo)
 	{
 	case DIO_PORTA:
-		L_u8PortVal = PORTA;
+		L_u8PortVal = PINA;
 		break;
 	case DIO_PORTB:
-		L_u8PortVal = PORTB;
+		L_u8PortVal = PINB;
 		break;
 	case DIO_PORTC:
-		L_u8PortVal = PORTC;
+		L_u8PortVal = PINC;
 		break;
 	case DIO_PORTD:
-		L_u8PortVal = PORTD;
+		L_u8PortVal = PIND;
 		break;
 
 	}
