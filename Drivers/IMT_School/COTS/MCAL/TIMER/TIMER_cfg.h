@@ -8,6 +8,13 @@
 #ifndef IMT_SCHOOL_COTS_MCAL_TIMER_TIMER_CFG_H_
 #define IMT_SCHOOL_COTS_MCAL_TIMER_TIMER_CFG_H_
 
+/* ---------> Timer 0 configuration <--------- */
+
+#define TIMER0_ENABLE              ENABLE
+
+
+
+
 /**
  * CLOCK SELECT OPTIONS:
  * NO_CLK
@@ -19,7 +26,23 @@
  * EXT_CLK_FALLING_EDGE
  * EXT_CLK_RISING_EDGE
  */
-#define CLOCK_SELECT      CLK_PRESCALING_8
+/**
+ * Waveform Generation Mode Option:
+ * NORMAL_OVF
+ * PWM_PH_CORRECT
+ * CTC
+ * FAST_PWM
+ *
+ */
+
+#define CLOCK_SELECT          CLK_PRESCALING_8
+#define WAVEFORM_GEN_MODE     FAST_PWM
+
+/* ---------> Timer 1 configuration <--------- */
+#define TIMER1_ENABLE         DISABLE
+
+/* ---------> Timer 2 configuration <--------- */
+
 
 
 #endif /* IMT_SCHOOL_COTS_MCAL_TIMER_TIMER_CFG_H_ */
